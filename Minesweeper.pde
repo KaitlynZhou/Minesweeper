@@ -63,7 +63,7 @@ public void displayLosingMessage()
   for(int i = 0; i<NUM_ROWS; i++){
     for(int j = 0; j<NUM_COLS; j++){
       if(mines.contains(buttons[i][j])&&buttons[i][j].clicked==false) 
-        fill(255, 0, 0);
+        buttons[i][j].clicked=true;
     }
   }
   buttons[9][6].setLabel("Y");
