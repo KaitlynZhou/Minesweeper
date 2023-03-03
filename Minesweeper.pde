@@ -62,7 +62,8 @@ public void displayLosingMessage()
   //your code here
   for(int i = 0; i<NUM_ROWS; i++){
     for(int j = 0; j<NUM_COLS; j++){
-      if(mines.contains(buttons[i][j])&&buttons[i][j].clicked==false) 
+      if(mines.contains(buttons[i][j]))
+        //buttons[i][j].flagged=false;
         buttons[i][j].clicked=true;
     }
   }
