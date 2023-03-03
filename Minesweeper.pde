@@ -34,7 +34,7 @@ public void setMines()
   int cMine = (int)(Math.random()*NUM_COLS);
   if (!mines.contains(buttons[rMine][cMine]))
     mines.add(buttons[rMine][cMine]);
-  System.out.println(rMine+", "+cMine);
+  //System.out.println(rMine+", "+cMine);
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public void draw ()
