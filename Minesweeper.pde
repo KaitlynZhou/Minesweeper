@@ -40,7 +40,7 @@ public void draw ()
   background( 0 );
   fill(255);
   text("No. of squares flagged: "+ numFlag, 80, 409);
-  text("No. of bombs: " + mines.size(), 360, 409);
+  text("No. of bombs: " + mines.size(), 355, 409);
   if (isWon() == true)
     displayWinningMessage();
 }
