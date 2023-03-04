@@ -7,9 +7,8 @@ private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of j
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void setup ()
 {
-  size(500, 500);
+  size(400, 400);
   textAlign(CENTER, CENTER);
-    background( 0 );
 
   // make the manager
   Interactive.make( this );
@@ -39,10 +38,10 @@ public void setMines()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public void draw ()
 {
-
+  background( 0 );
   fill(255);
-  text("No. of squares flagged: "+ numFlag, 80, 487);
-  text("No. of bombs: " + mines.size(), 360, 487);
+  text("No. of squares flagged: "+ numFlag, 80, 387);
+  text("No. of bombs: " + mines.size(), 360, 387);
   if (isWon() == true)
     displayWinningMessage();
 }
@@ -116,7 +115,7 @@ public int countMines(int row, int col)
   return numMines;
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-public int numFlag = 0;
+public int numFlag = 40;
 public class MSButton
 {
   private int myRow, myCol;
@@ -126,8 +125,8 @@ public class MSButton
   //~~~~~~~~~~~~~~~
   public MSButton ( int row, int col )
   {
-    width = 500/NUM_COLS;
-    height = 485/NUM_ROWS;
+    width = 400/NUM_COLS;
+    height = 385/NUM_ROWS;
     myRow = row;
     myCol = col; 
     x = myCol*width;
@@ -144,10 +143,10 @@ public class MSButton
     //your code here
     if (mouseButton==RIGHT) {
       flagged = !flagged;
-      numFlag++;
+      numFlag--;
       if (flagged==false){
         clicked=false;
-        numFlag--;
+        numFlag++;
       }
     } else if (mines.contains(this))
       displayLosingMessage();
