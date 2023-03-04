@@ -20,20 +20,19 @@ void setup ()
       buttons[r][c] = new MSButton(r, c);
     }
   }
-  int mineC=0;
-  while (mineC<40) {
-    setMines();
-    mineC++;
-  }
+  setMines();
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public void setMines()
 {
   //your code
-  int rMine = (int)(Math.random()*NUM_ROWS);
+  
+  while(mines.size()<40){
+    int rMine = (int)(Math.random()*NUM_ROWS);
   int cMine = (int)(Math.random()*NUM_COLS);
   if (!mines.contains(buttons[rMine][cMine]))
     mines.add(buttons[rMine][cMine]);
+  }
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public void draw ()
