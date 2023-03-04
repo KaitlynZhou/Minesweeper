@@ -7,8 +7,9 @@ private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of j
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void setup ()
 {
-  size(400, 400);
+  size(500, 500);
   textAlign(CENTER, CENTER);
+    background( 0 );
 
   // make the manager
   Interactive.make( this );
@@ -38,7 +39,10 @@ public void setMines()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public void draw ()
 {
-  background( 0 );
+
+  fill(255);
+  text("No. of squares flagged: "+ numFlag, 80, 487);
+  text("No. of bombs: " + mines.size(), 360, 487);
   if (isWon() == true)
     displayWinningMessage();
 }
@@ -61,9 +65,10 @@ public void displayLosingMessage()
   //your code here
   for(int i = 0; i<NUM_ROWS; i++){
     for(int j = 0; j<NUM_COLS; j++){
-      if(mines.contains(buttons[i][j]))
-        //buttons[i][j].flagged=false;
+      if(mines.contains(buttons[i][j])){
+        buttons[i][j].flagged=false;
         buttons[i][j].clicked=true;
+      }
     }
   }
   buttons[9][6].setLabel("Y");
@@ -111,6 +116,7 @@ public int countMines(int row, int col)
   return numMines;
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+public int numFlag = 0;
 public class MSButton
 {
   private int myRow, myCol;
@@ -120,8 +126,8 @@ public class MSButton
   //~~~~~~~~~~~~~~~
   public MSButton ( int row, int col )
   {
-    width = 400/NUM_COLS;
-    height = 400/NUM_ROWS;
+    width = 500/NUM_COLS;
+    height = 485/NUM_ROWS;
     myRow = row;
     myCol = col; 
     x = myCol*width;
@@ -138,8 +144,11 @@ public class MSButton
     //your code here
     if (mouseButton==RIGHT) {
       flagged = !flagged;
-      if (flagged==false)
+      numFlag++;
+      if (flagged==false){
         clicked=false;
+        numFlag--;
+      }
     } else if (mines.contains(this))
       displayLosingMessage();
     else if (countMines(myRow, myCol)>0) {
