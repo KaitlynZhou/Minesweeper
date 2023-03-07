@@ -4,6 +4,7 @@ public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
+public boolean isLost = false;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void setup ()
 {
@@ -39,10 +40,11 @@ public void draw ()
 {
   background( 0 );
   fill(255);
-  text("No. of squares flagged: "+ numFlag, 80, 409);
+  text("Flags Left: "+ numFlag, 80, 409);
   text("No. of bombs: " + mines.size(), 350, 409);
-  if (isWon() == true)
-    displayWinningMessage();
+if (isWon() == true){
+    isLost = true;
+      displayWinningMessage();}
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 public boolean isWon()
@@ -61,6 +63,7 @@ public boolean isWon()
 public void displayLosingMessage()
 {
   //your code here
+  isLost=true;
   for(int i = 0; i<NUM_ROWS; i++){
     for(int j = 0; j<NUM_COLS; j++){
       if(mines.contains(buttons[i][j])){
@@ -138,15 +141,26 @@ public class MSButton
   // called by manager
   public void mousePressed () 
   {
+    if(isLost == false || isWon()==false){
     clicked = true;
     //your code here
     if (mouseButton==RIGHT) {
-      flagged = !flagged;
-      numFlag--;
-      if (flagged==false){
-        clicked=false;
+      //flagged = !flagged;
+      //numFlag--;
+      //if (flagged==false){
+      //  clicked=false;
+      //  numFlag++;
+      //}
+      if(flagged == true){
+        flagged = false;
         numFlag++;
       }
+      else if(flagged == false){
+        flagged = true;
+        numFlag--;
+      }
+      if(flagged == false)
+        clicked = false;
     } else if (mines.contains(this))
       displayLosingMessage();
     else if (countMines(myRow, myCol)>0) {
@@ -162,6 +176,7 @@ public class MSButton
           }
         }
       }
+    }
     }
   }
   //~~~~~~~~~~~~~~~
