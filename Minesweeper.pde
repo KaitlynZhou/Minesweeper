@@ -141,7 +141,7 @@ public class MSButton
   // called by manager
   public void mousePressed () 
   {
-    if(isLost == false || isWon()==false){
+    if(isLost == false){
     clicked = true;
     //your code here
     if (mouseButton==RIGHT) {
